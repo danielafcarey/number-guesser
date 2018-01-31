@@ -97,14 +97,13 @@ div {
   margin-left: auto;
 }
 
-.reset button {
-  background-color: #929397;
+.reset-button {
   width: 527px;
   font-size: 24px;
   padding: 3px;
 }
 
-.reset button:hover {
+.reset-button:hover {
   background-color: #EB008B;
 }
 

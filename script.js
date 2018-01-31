@@ -17,6 +17,7 @@
 // ✅ display error if userInput is NaN (parseInt() returns NaN)
 // ✅ display error if userInput is > max and < min
 // ✅ #reset-game button generates new random number
+// reset button should be disabled if input field is empty
 
 // add input fields for user to specify min & max
 // if userInput === randomNumber, max increases by 10 (adjust userInput field to accept broader range)
@@ -25,13 +26,13 @@
 
 // ❓ DO I NEED THIS? look into event.preventDefault to prevent form from submitting to server
 // ❓ Should the reset button ever be disabled?
+// ❓ how does this work --> Math.random() * (max - min) + min);
 // ✅ change button colors to have disabled/active state color
 // ✅ make initial game UI show smaller "Make a guess" font (.make-a-guess class)
 // ✅ set up tabs correctly (to tab through buttons)
 // change what happens when user types "enter" after inputing guess in input field
 // change ids to classes
 // remove hover from inactive buttons
-// 
 
 // ===================================================================
 
@@ -41,7 +42,7 @@ var guessButton = document.querySelector('#guess-button');
 var clearButton = document.querySelector('#clear-button');
 var displayLastGuess = document.querySelector('.display-last-guess');
 var userInputGuess = document.querySelector('#user-input');
-var resetGameButton = document.querySelector('#reset-game');
+var resetGameButton = document.querySelector('.reset-button');
 var yourLastGuessWas = document.getElementById('your-last-guess-was');
 var thatIsToo = document.getElementById('that-is-too');
 
@@ -54,33 +55,38 @@ function updateButtonStates() {
   var userInput = userInputGuess.value;
   guessButton.disabled = userInput === "";
   clearButton.disabled = userInput === "";
+  resetGameButton.disabled = userInput === "";
 
   // function addHoverState() {
   //   guessButton.classList.add('button-hover');
   //   console.log("addHoverState ran");
-  // };
+  // }
 
   if (guessButton.disabled === false) {
     guessButton.classList.add('active-button');
     // guessButton.addEventListener('onmouseover', addHoverState);
-    console.log("guess button is enabled");
+    console.log("guess button is ENABLED");
   } else {
     guessButton.classList.remove('active-button');
+    console.log("guess button is DISABLED")
   }
 
   if (clearButton.disabled === false) {
     clearButton.classList.add('active-button');
+    console.log("clear button is ENABLED");
   } else {
     clearButton.classList.remove('active-button');
-  };
+    console.log("clear button is DISABLED")
+  }
 
-  if (guessButton.disabled === false) {
+  if (resetGameButton.disabled === false) {
     resetGameButton.classList.add('active-button');
+    console.log("reset button is ENABLED");
   } else {
     resetGameButton.classList.remove('active-button');
+    console.log("reset button is DISABLED");
   }
 };
-// ^^ look into actually disabling reset and if I want it ever disabled?
 // ^^ can clean up this code by putting all remove/add classes into the same if event
 
 
