@@ -17,9 +17,12 @@
 // ✅ display error if userInput is NaN (parseInt() returns NaN)
 // ✅ display error if userInput is > max and < min
 // ✅ #reset-game button generates new random number
-// reset button should be disabled if input field is empty
+// ✅ reset button should be disabled if input field is empty
+// ✅ guess and clear buttons disabled if user guesses correctly
 
-// add input fields for user to specify min & max
+// ✅ add input fields for user to specify min & max
+// when input fields show number, update min/max in getRandomNumber
+// when user clicks into input field, getRandomNumber is run (so that it will generate new one after min/max is inputted)
 // if userInput === randomNumber, max increases by 10 (adjust userInput field to accept broader range)
 // if userInput === randomNumber, min decreases by 10 (adjust userInput field to accept broader range)
 // refine UI so user understands updated range ^^ 
@@ -33,6 +36,7 @@
 // change what happens when user types "enter" after inputing guess in input field
 // change ids to classes
 // remove hover from inactive buttons
+// change "Guess a number" text to be bigger and pink at reset-state
 
 // ===================================================================
 

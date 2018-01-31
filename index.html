@@ -17,6 +17,7 @@ body:
   <header>
     <h1>Number <span class="guesser">Guesser</span></h1>
   </header>
+
   <section class="user-guess">
     <form>
       <input type="text" name="user-guess" placeholder="Enter your guess" id="user-input" class="left-text" aria-label="User guess" aria-required="true">
@@ -27,14 +28,27 @@ body:
       </div>
     </form>
   </section>
+
   <section class="user-result">
     <p id="your-last-guess-was">Guess a number</p>
     <p class="display-last-guess"></p>
     <p id="that-is-too"></p>
   </section>
+
+  <section class="user-range-input">
+    <p>Optional: specify new range</p>
+    <form>
+      <div>
+        <input type="number" name="minimum-number" placeholder="Minimum" id="minimum-number" aria-label="Minimum Number">
+        <input type="number" name="maximum-number" placeholder="Maximum" id="maximum-number" aria-label="Maximum Number">
+      </div>
+    </form>
+  </section>
+
   <section class="reset">
     <button type="button" class="reset-button" name="reset-guesser" disabled="true">Reset</button>
   </section>
+
   <script type="text/javascript" src="script.js"></script>
 </body>
 </html>
