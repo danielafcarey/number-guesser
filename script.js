@@ -64,27 +64,26 @@ function updateButtonStates() {
 
   if (guessButton.disabled === false) {
     guessButton.classList.add('active-button');
-    // guessButton.addEventListener('onmouseover', addHoverState);
-    console.log("guess button is ENABLED");
+    // console.log("guess button is ENABLED");
   } else {
     guessButton.classList.remove('active-button');
-    console.log("guess button is DISABLED")
+    // console.log("guess button is DISABLED")
   }
 
   if (clearButton.disabled === false) {
     clearButton.classList.add('active-button');
-    console.log("clear button is ENABLED");
+    // console.log("clear button is ENABLED");
   } else {
     clearButton.classList.remove('active-button');
-    console.log("clear button is DISABLED")
+    // console.log("clear button is DISABLED")
   }
 
   if (resetGameButton.disabled === false) {
     resetGameButton.classList.add('active-button');
-    console.log("reset button is ENABLED");
+    // console.log("reset button is ENABLED");
   } else {
     resetGameButton.classList.remove('active-button');
-    console.log("reset button is DISABLED");
+    // console.log("reset button is DISABLED");
   }
 };
 // ^^ can clean up this code by putting all remove/add classes into the same if event
@@ -98,13 +97,21 @@ function clearUserGuess() {
 function displayUserResult() {
   var userInput = userInputGuess.value; 
   userInput = parseInt(userInput, 10);
+
   if (randomNumber > userInput) {
     thatIsToo.innerText = "That is too low!";
   } else if (randomNumber < userInput) {
     thatIsToo.innerText = "That is too high!";
   } else if (randomNumber === userInput) {
     thatIsToo.innerText = "BOOM!";
-  } else {};
+  } else {}
+
+  if (thatIsToo.innerText === "BOOM!") {
+    guessButton.disabled = true;
+    guessButton.classList.remove('active-button');
+    clearButton.disabled = true;
+    clearButton.classList.remove('active-button');
+  } else {}
 };
 
 function resetGame() {
