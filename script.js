@@ -21,7 +21,11 @@
 // ✅ guess and clear buttons disabled if user guesses correctly
 
 // ✅ add input fields for user to specify min & max
-// when input fields show number, update min/max in getRandomNumber
+// ✅ when input fields show number, update min/max in getRandomNumber
+// ✅ when user inputs min/max, new random number is generated
+// ✅ when range is updated by user input, new randomNumber is generated
+// update alerts to show alert if guess it outside new range
+// user can guess with new range until reset button is clicked
 // when user clicks into input field, getRandomNumber is run (so that it will generate new one after min/max is inputted)
 // if userInput === randomNumber, max increases by 10 (adjust userInput field to accept broader range)
 // if userInput === randomNumber, min decreases by 10 (adjust userInput field to accept broader range)
@@ -37,7 +41,9 @@
 // change ids to classes
 // remove hover from inactive buttons
 // change "Guess a number" text to be bigger and pink at reset-state
-
+// clean up code: 
+// - userInput should be userInputGuess to be clear
+// - change thatIsToo name to something less stupid
 // ===================================================================
 
 var randomNumber = getRandomNumber(0, 100);
@@ -49,10 +55,26 @@ var userInputGuess = document.querySelector('#user-input');
 var resetGameButton = document.querySelector('.reset-button');
 var yourLastGuessWas = document.getElementById('your-last-guess-was');
 var thatIsToo = document.getElementById('that-is-too');
+var inputMin = document.getElementById('minimum-number');
+var inputMax = document.getElementById('maximum-number');
+var userRangeInput = document.getElementById('user-range-input');
 
+function updateRange() {
+  var userInputMin = inputMin.value;
+  userInputMin = parseInt(userInputMin, 10);
+  console.log(userInputMin);
+
+  var userInputMax = inputMax.value;
+  userInputMax = parseInt(userInputMax, 10);
+  console.log(userInputMax);
+
+  randomNumber = getRandomNumber(userInputMin, userInputMax);
+  console.log(randomNumber);
+}
+inputMax.addEventListener('input', updateRange);
 
 function getRandomNumber(min, max) {
-  return Math.floor(Math.random() * (max - min) + min);
+  return Math.floor(Math.random() * (max - min + 1) + min);
 };
 
 function updateButtonStates() {
@@ -60,11 +82,6 @@ function updateButtonStates() {
   guessButton.disabled = userInput === "";
   clearButton.disabled = userInput === "";
   resetGameButton.disabled = userInput === "";
-
-  // function addHoverState() {
-  //   guessButton.classList.add('button-hover');
-  //   console.log("addHoverState ran");
-  // }
 
   if (guessButton.disabled === false) {
     guessButton.classList.add('active-button');
@@ -101,6 +118,7 @@ function clearUserGuess() {
 function displayUserResult() {
   var userInput = userInputGuess.value; 
   userInput = parseInt(userInput, 10);
+  console.log(userInput);
 
   if (randomNumber > userInput) {
     thatIsToo.innerText = "That is too low!";
@@ -122,9 +140,11 @@ function resetGame() {
   yourLastGuessWas.innerText = "Guess a number";
   displayLastGuess.innerText = "";
   thatIsToo.innerText = "";
+
+  userRangeInput.reset();
   updateButtonStates();
   clearUserGuess();
-  randomNumber = getRandomNumber(0,100);
+  randomNumber = getRandomNumber(0, 100);
   console.log(randomNumber);
 };
 
