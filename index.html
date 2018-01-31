@@ -1,0 +1,40 @@
+<!-- 
+header: Number Guesser heading
+body: 
+  guess section: input field, 2 buttons
+  results section: p, p user guess, p score
+  reset section: reset button -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <link rel="stylesheet" type="text/css" href="style.css">
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,700" rel="stylesheet">
+</head>
+<body>
+  <header>
+    <h1>Number <span class="guesser">Guesser</span></h1>
+  </header>
+  <section class="user-guess">
+    <form>
+      <input type="text" name="user-guess" placeholder="Enter your guess" id="user-input" class="left-text" aria-label="User guess" aria-required="true">
+      <!-- ^^ make sure can only take a num -->
+      <div id="user-guess-buttons">
+        <button type="button" name="submit-guess" id="guess-button" disabled="true">Guess</button>
+        <button  type="button" name="clear-guess" id="clear-button" disabled="true">Clear</button> <!-- Change button types to submit! -->
+      </div>
+    </form>
+  </section>
+  <section class="user-result">
+    <p id="your-last-guess-was">Guess a number</p>
+    <p class="display-last-guess"></p>
+    <p id="that-is-too"></p>
+  </section>
+  <section class="reset">
+    <button type="button" id="reset-game" name="reset-guesser">Reset</button>
+  </section>
+  <script type="text/javascript" src="script.js"></script>
+</body>
+</html>

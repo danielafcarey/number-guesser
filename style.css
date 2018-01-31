@@ -1,0 +1,110 @@
+* {
+  margin: 0px;
+  font-family: 'Open Sans', sans-serif;
+  text-align: center;
+  font-size: 28px;
+}
+
+.left-text {
+  text-align: left;
+}
+
+header {
+  background-color: #404041;
+  height: 122px;
+  /*vertical-align: middle; -- why does this never work???*/
+}
+
+h1 {
+  display: inline-block;
+  margin-top: 13px;
+  text-align: center;
+  color: #ED458B;
+  font-weight: 700;
+  font-size: 68px;
+}
+
+span {
+color: #E6E7E8;
+font-weight: 300;
+font-size: 68px;
+}
+
+input {
+  margin-top: 60px;
+  width: 527px;
+  padding: 3px;
+  text-indent: 4px;
+}
+
+button {
+  display: inline-block;
+  background-color: #D0D2D3;
+  width: 25%;
+  border-radius: 30px;
+  color: #ffffff;
+}
+
+.active-button {
+  background-color: #929397;
+}
+
+button:hover {
+  background-color: #EB008B;
+}
+
+.user-guess {
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.user-guess button {
+  width: 238px;
+  margin-top: 50px;
+}
+
+div {
+  position: relative;
+  width: 527px;
+  margin: 0 auto;
+}
+/*div w/buttons = relative, for each button position=absolute, left 0 or right 0*/
+
+#guess-button {
+  position: absolute;
+  left: 0;
+}
+
+#clear-button {
+  position: absolute;
+  right: 0;
+}
+
+.user-result {
+  margin-right: auto;
+  margin-left: auto;
+  margin-top: 170px;
+  margin-bottom: 70px;
+}
+
+.display-last-guess {
+  font-size: 170px;
+  color: #EB008B;
+}
+
+.reset {
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.reset button {
+  background-color: #929397;
+  width: 527px;
+  font-size: 24px;
+  padding: 3px;
+}
+
+.reset button:hover {
+  background-color: #EB008B;
+}
+
