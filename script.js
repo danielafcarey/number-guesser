@@ -24,15 +24,17 @@
 // ✅ when input fields show number, update min/max in getRandomNumber
 // ✅ when user inputs min/max, new random number is generated
 // ✅ when range is updated by user input, new randomNumber is generated
-// update alerts to show alert if guess it outside new range
+// ✅ update alerts to show alert if guess it outside new range
+// enable reset button if "input" in the min/max fields
 // user can guess with new range until reset button is clicked
+// if guess is out of range, it should not show up in the user-result section
 // when user clicks into input field, getRandomNumber is run (so that it will generate new one after min/max is inputted)
 // if userInput === randomNumber, max increases by 10 (adjust userInput field to accept broader range)
 // if userInput === randomNumber, min decreases by 10 (adjust userInput field to accept broader range)
 // refine UI so user understands updated range ^^ 
+// check JS styleguide
 
 // ❓ DO I NEED THIS? look into event.preventDefault to prevent form from submitting to server
-// ❓ Should the reset button ever be disabled?
 // ❓ how does this work --> Math.random() * (max - min) + min);
 // ✅ change button colors to have disabled/active state color
 // ✅ make initial game UI show smaller "Make a guess" font (.make-a-guess class)
@@ -41,6 +43,7 @@
 // change ids to classes
 // remove hover from inactive buttons
 // change "Guess a number" text to be bigger and pink at reset-state
+// update spacing so user doesn't have to scroll
 // clean up code: 
 // - userInput should be userInputGuess to be clear
 // - change thatIsToo name to something less stupid
@@ -59,19 +62,21 @@ var inputMin = document.getElementById('minimum-number');
 var inputMax = document.getElementById('maximum-number');
 var userRangeInput = document.getElementById('user-range-input');
 
+guessButton.addEventListener('click', alertUser);
+userInputGuess.addEventListener('input', updateButtonStates);
+clearButton.addEventListener('click', clearUserGuess);
+inputMax.addEventListener('input', updateRange);
+resetGameButton.addEventListener('click', resetGame);
+
 function updateRange() {
   var userInputMin = inputMin.value;
   userInputMin = parseInt(userInputMin, 10);
-  console.log(userInputMin);
-
   var userInputMax = inputMax.value;
   userInputMax = parseInt(userInputMax, 10);
-  console.log(userInputMax);
 
   randomNumber = getRandomNumber(userInputMin, userInputMax);
   console.log(randomNumber);
 }
-inputMax.addEventListener('input', updateRange);
 
 function getRandomNumber(min, max) {
   return Math.floor(Math.random() * (max - min + 1) + min);
@@ -126,15 +131,42 @@ function displayUserResult() {
     thatIsToo.innerText = "That is too high!";
   } else if (randomNumber === userInput) {
     thatIsToo.innerText = "BOOM!";
-  } else {}
+  } 
 
   if (thatIsToo.innerText === "BOOM!") {
     guessButton.disabled = true;
     guessButton.classList.remove('active-button');
     clearButton.disabled = true;
     clearButton.classList.remove('active-button');
-  } else {}
+  } 
 };
+
+function alertUser() {
+  var userInput = userInputGuess.value;
+  userInput = parseInt(userInput, 10);
+  var userInputMin = inputMin.value;
+  userInputMin = parseInt(userInputMin, 10);
+  console.log(userInputMin);
+  var userInputMax = inputMax.value;
+  userInputMax = parseInt(userInputMax, 10);
+  console.log(userInputMax);
+
+  if (Number.isNaN(userInput)) {
+    alert("Please enter a number.");
+  } else if ((userInput < userInputMin) || (userInput > userInputMax)) {
+    alert("Number must be between " + userInputMin + " and " + userInputMax);
+  } else {
+    displayLastGuess.innerText = userInput;
+    yourLastGuessWas.innerText = "Your last guess was";
+    thatIsToo.innerText = "";
+    displayUserResult();
+  }
+
+  if (((Number.isNaN(userInputMin) || (Number.isNan(userInputMax))) && ((userInput < 0) || (userInput > 100)))) {
+    alert("Number must be between 0 and 100")
+    resetGame();
+  }
+}
 
 function resetGame() {
   yourLastGuessWas.innerText = "Guess a number";
@@ -147,38 +179,6 @@ function resetGame() {
   randomNumber = getRandomNumber(0, 100);
   console.log(randomNumber);
 };
-
-// look into highlow ()
-
-guessButton.addEventListener('click', function() {
-  var userInput = userInputGuess.value;
-  userInput = parseInt(userInput, 10);
-
-  if (Number.isNaN(userInput)) {
-    alert("Please enter a number.");
-  } else if ((userInput < 0) || (userInput > 100)) {
-    alert("Number must be between 0 and 100");
-  } else {
-    displayLastGuess.innerText = userInput;
-    yourLastGuessWas.innerText = "Your last guess was";
-    thatIsToo.innerText = "";
-    displayUserResult();
-  }
-});
-
-
-userInputGuess.addEventListener('input', updateButtonStates);
-
-clearButton.addEventListener('click', clearUserGuess);
-
-resetGameButton.addEventListener('click', resetGame);
-
-
-
-// ^^ when reset-button is clicked, function resetGame is run.
-
-// may need to figure out how to run back through other functions. 
-// figure out how to start with reset state
 
 
 
