@@ -28,12 +28,11 @@
 // ✅ enable reset button if "input" in the min/max fields
 // ✅ user can guess with new range until reset button is clicked
 // ✅ if guess is out of range, it should not show up in the user-result section
+// ✅ check JS styleguide
 // if userInput === randomNumber, max increases by 10 (adjust userInput field to accept broader range)
 // if userInput === randomNumber, min decreases by 10 (adjust userInput field to accept broader range)
 // refine UI so user understands updated range ^^ 
-// check JS styleguide
 
-// ❓ WHY CAN'T I DECLARE userInput var OUTSIDE FUNCTIONS?!?!?! (alternative is to create a function to do it and call tha function everytime I want it...but kept it this way for the sake of asking the question)
 // ❓ how does this work --> Math.random() * (max - min) + min);
 // ❓ how to better use element.class#id in css
 // ❓ tips/tricks for ids vs. classes (specifically how could this code improve?)
@@ -42,11 +41,10 @@
 // ✅ change button colors to have disabled/active state color
 // ✅ make initial game UI show smaller "Make a guess" font (.make-a-guess class)
 // ✅ set up tabs correctly (to tab through buttons)
-// change what happens when user types "enter" after inputing guess in input field
 // ✅ only allow min/max input if max > min
-// remove hover from inactive buttons
 // ✅ change "Guess a number" text to stand out more (pink)
-// update spacing so user doesn't have to scroll
+// remove hover from inactive buttons
+// change what happens when user types "enter" after inputing guess in input field
 // clean up code: 
 // - userInput should be userInputGuess to be clear
 // - change thatIsToo name to something less stupid
@@ -54,7 +52,6 @@
 
 var setMinumum = 0;
 var setMaximum = 100;
-
 var guessButton = document.querySelector('#guess-button');
 var clearButton = document.querySelector('#clear-button');
 var displayLastGuess = document.querySelector('.display-last-guess');
@@ -206,7 +203,7 @@ function updateRange() {
 //   if (event.keyCode === 13) {
 //     guessButton.click();
 //   }
-// })
+// });
 
 
 
