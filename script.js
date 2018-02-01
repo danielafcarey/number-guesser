@@ -25,10 +25,10 @@
 // ✅ when user inputs min/max, new random number is generated
 // ✅ when range is updated by user input, new randomNumber is generated
 // ✅ update alerts to show alert if guess it outside new range
-// enable reset button if "input" in the min/max fields
-// user can guess with new range until reset button is clicked
-// if guess is out of range, it should not show up in the user-result section
-// when user clicks into input field, getRandomNumber is run (so that it will generate new one after min/max is inputted)
+// ✅ enable reset button if "input" in the min/max fields
+// ✅ user can guess with new range until reset button is clicked
+// ✅ if guess is out of range, it should not show up in the user-result section
+// MAYBE: when user clicks into input field, getRandomNumber is run (so that it will generate new one after min/max is inputted)
 // if userInput === randomNumber, max increases by 10 (adjust userInput field to accept broader range)
 // if userInput === randomNumber, min decreases by 10 (adjust userInput field to accept broader range)
 // refine UI so user understands updated range ^^ 
@@ -36,11 +36,12 @@
 
 // ❓ DO I NEED THIS? look into event.preventDefault to prevent form from submitting to server
 // ❓ how does this work --> Math.random() * (max - min) + min);
+// ❓ tips/tricks for ids vs. classes (specifically how could this code improve?)
 // ✅ change button colors to have disabled/active state color
 // ✅ make initial game UI show smaller "Make a guess" font (.make-a-guess class)
 // ✅ set up tabs correctly (to tab through buttons)
 // change what happens when user types "enter" after inputing guess in input field
-// change ids to classes
+// only allow min/max input if max > min (display alert if not)
 // remove hover from inactive buttons
 // change "Guess a number" text to be bigger and pink at reset-state
 // update spacing so user doesn't have to scroll
@@ -76,6 +77,12 @@ function updateRange() {
 
   randomNumber = getRandomNumber(userInputMin, userInputMax);
   console.log(randomNumber);
+
+  // resetGameButton === active
+  if ((Number.isNaN(userInputMax)) === false) {
+    resetGameButton.disabled = false;
+    resetGameButton.classList.add('active-button');
+  }
 }
 
 function getRandomNumber(min, max) {
