@@ -12,7 +12,6 @@
 header {
   background-color: #404041;
   height: 122px;
-  /*vertical-align: middle; -- why does this never work???*/
 }
 
 h1 {
@@ -25,9 +24,9 @@ h1 {
 }
 
 span {
-color: #E6E7E8;
-font-weight: 300;
-font-size: 68px;
+  color: #E6E7E8;
+  font-weight: 300;
+  font-size: 68px;
 }
 
 input {
@@ -68,7 +67,6 @@ div {
   width: 527px;
   margin: 0 auto;
 }
-/*div w/buttons = relative, for each button position=absolute, left 0 or right 0*/
 
 #guess-button {
   position: absolute;
@@ -85,6 +83,7 @@ div {
   margin-left: auto;
   margin-top: 170px;
   margin-bottom: 70px;
+  color: #404041;
 }
 
 .display-last-guess {
@@ -92,16 +91,13 @@ div {
   color: #EB008B;
 }
 
-/*.display-last-guess-reset-state {
-  font-size: 50px;
+.pink-text {
   color: #EB008B;
-}*/
-
-/*.user-range-input {
-}*/
+}
 
 #minimum-number {
   margin-top: 10px;
+  margin-bottom: 50px;
   width: 238px;
   position: absolute;
   left: 0;
@@ -109,18 +105,20 @@ div {
 
 #maximum-number {
   margin-top: 10px;
+  margin-bottom: 50px;
   width: 238px;
   position: absolute;
   right: 0;
 }
 
 .reset {
-  margin-right: auto;
   margin-left: auto;
+  margin-bottom: 80px;
+  margin-right: auto;
 }
 
 .reset-button {
-  margin-top: 100px;
+  margin-top: 0px;
   width: 527px;
   font-size: 24px;
   padding: 3px;
@@ -128,5 +126,23 @@ div {
 
 .reset-button:hover {
   background-color: #EB008B;
+}
+
+.new-range {
+  margin-top: 20px;
+}
+
+.new-range p {
+  margin-bottom: 10px;
+  font-size: 22px;
+}
+
+.new-range input {
+  font-size: 22px;
+}
+
+#choose-adventure-title {
+  font-weight: bold;
+  color: #404041;
 }
 

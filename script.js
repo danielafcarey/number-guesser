@@ -36,14 +36,16 @@
 
 // ❓ DO I NEED THIS? look into event.preventDefault to prevent form from submitting to server
 // ❓ how does this work --> Math.random() * (max - min) + min);
+// ❓ how to better use element.class#id in css
 // ❓ tips/tricks for ids vs. classes (specifically how could this code improve?)
+// ❓ vertical-align: middle; -- why does this never work???
 // ✅ change button colors to have disabled/active state color
 // ✅ make initial game UI show smaller "Make a guess" font (.make-a-guess class)
 // ✅ set up tabs correctly (to tab through buttons)
 // change what happens when user types "enter" after inputing guess in input field
 // only allow min/max input if max > min (display alert if not)
 // remove hover from inactive buttons
-// change "Guess a number" text to be bigger and pink at reset-state
+// ✅ change "Guess a number" text to stand out more (pink)
 // update spacing so user doesn't have to scroll
 // clean up code: 
 // - userInput should be userInputGuess to be clear
@@ -130,6 +132,7 @@ function clearUserGuess() {
 function displayUserResult() {
   var userInput = userInputGuess.value; 
   userInput = parseInt(userInput, 10);
+  yourLastGuessWas.classList.remove('pink-text');
   console.log(userInput);
 
   if (randomNumber > userInput) {
@@ -177,6 +180,7 @@ function alertUser() {
 
 function resetGame() {
   yourLastGuessWas.innerText = "Guess a number";
+  yourLastGuessWas.classList.add('pink-text');
   displayLastGuess.innerText = "";
   thatIsToo.innerText = "";
 

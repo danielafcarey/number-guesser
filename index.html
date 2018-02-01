@@ -30,23 +30,26 @@ body:
   </section>
 
   <section class="user-result">
-    <p id="your-last-guess-was">Guess a number</p>
+    <p id="your-last-guess-was" class="pink-text">Guess a number</p>
     <p class="display-last-guess"></p>
     <p id="that-is-too"></p>
   </section>
 
-  <section>
-    <p>Optional: Specify new range</p>
+  <section class="reset">
+    <button type="button" class="reset-button" name="reset-guesser" disabled="true">Reset</button>
+  </section>
+
+  <hr>
+
+  <section class="new-range">
+    <p id="choose-adventure-title">Choose Your Own Adventure</p>
+    <p>Specify new range:</p>
     <form id="user-range-input">
       <div>
         <input type="number" name="minimum-number" placeholder="Minimum" id="minimum-number" aria-label="Minimum Number">
         <input type="number" name="maximum-number" placeholder="Maximum" id="maximum-number" aria-label="Maximum Number">
       </div>
     </form>
-  </section>
-
-  <section class="reset">
-    <button type="button" class="reset-button" name="reset-guesser" disabled="true">Reset</button>
   </section>
 
   <script type="text/javascript" src="script.js"></script>
