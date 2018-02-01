@@ -1,10 +1,3 @@
-<!-- 
-header: Number Guesser heading
-body: 
-  guess section: input field, 2 buttons
-  results section: p, p user guess, p score
-  reset section: reset button -->
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -20,23 +13,31 @@ body:
   <section class="user-guess">
     <form>
       <input type="text" name="user-guess" placeholder="Enter your guess" id="user-input" class="left-text" aria-label="User guess" aria-required="true">
-      <!-- ^^ make sure can only take a num -->
       <div id="user-guess-buttons">
         <button type="button" name="submit-guess" id="guess-button" disabled="true">Guess</button>
-        <button  type="button" name="clear-guess" id="clear-button" disabled="true">Clear</button> <!-- Change button types to submit! -->
+        <button  type="button" name="clear-guess" id="clear-button" disabled="true">Clear</button>
       </div>
     </form>
   </section>
   <section class="user-result">
-    <p id="your-last-guess-was">Guess a number</p>
+    <p id="your-last-guess-was" class="pink-text">Guess a number</p>
     <p class="display-last-guess"></p>
     <p id="that-is-too"></p>
   </section>
   <section class="reset">
     <button type="button" class="reset-button" name="reset-guesser" disabled="true">Reset</button>
   </section>
+  <hr>
+  <section class="new-range">
+    <p id="choose-adventure-title">Choose Your Own Adventure</p>
+    <p>Specify new range:</p>
+    <form id="user-range-input">
+      <div>
+        <input type="number" name="minimum-number" placeholder="Minimum" id="minimum-number" step="10" aria-label="Minimum Number">
+        <input type="number" name="maximum-number" placeholder="Maximum" id="maximum-number" step="10" aria-label="Maximum Number">
+      </div>
+    </form>
+  </section>
   <script type="text/javascript" src="script.js"></script>
 </body>
 </html>
-
-<!-- input step="10" to make it increment by 10 -->

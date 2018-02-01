@@ -17,27 +17,41 @@
 // ✅ display error if userInput is NaN (parseInt() returns NaN)
 // ✅ display error if userInput is > max and < min
 // ✅ #reset-game button generates new random number
-// reset button should be disabled if input field is empty
+// ✅ reset button should be disabled if input field is empty
+// ✅ guess and clear buttons disabled if user guesses correctly
 
-// add input fields for user to specify min & max
+// ✅ add input fields for user to specify min & max
+// ✅ when input fields show number, update min/max in getRandomNumber
+// ✅ when user inputs min/max, new random number is generated
+// ✅ when range is updated by user input, new randomNumber is generated
+// ✅ update alerts to show alert if guess it outside new range
+// ✅ enable reset button if "input" in the min/max fields
+// ✅ user can guess with new range until reset button is clicked
+// ✅ if guess is out of range, it should not show up in the user-result section
+// ✅ check JS styleguide
 // if userInput === randomNumber, max increases by 10 (adjust userInput field to accept broader range)
 // if userInput === randomNumber, min decreases by 10 (adjust userInput field to accept broader range)
 // refine UI so user understands updated range ^^ 
 
-// ❓ DO I NEED THIS? look into event.preventDefault to prevent form from submitting to server
-// ❓ Should the reset button ever be disabled?
 // ❓ how does this work --> Math.random() * (max - min) + min);
+// ❓ how to better use element.class#id in css
+// ❓ tips/tricks for ids vs. classes (specifically how could this code improve?)
+// ❓ vertical-align: middle; -- why does this never work???
+// ❓ when committing, what is best practice if you've made a major change, but also a minor change? Do you notate that minor change?
 // ✅ change button colors to have disabled/active state color
 // ✅ make initial game UI show smaller "Make a guess" font (.make-a-guess class)
 // ✅ set up tabs correctly (to tab through buttons)
-// change what happens when user types "enter" after inputing guess in input field
-// change ids to classes
+// ✅ only allow min/max input if max > min
+// ✅ change "Guess a number" text to stand out more (pink)
 // remove hover from inactive buttons
-
+// change what happens when user types "enter" after inputing guess in input field
+// clean up code: 
+// - userInput should be userInputGuess to be clear
+// - change thatIsToo name to something less stupid
 // ===================================================================
 
-var randomNumber = getRandomNumber(0, 100);
-console.log(randomNumber);
+var setMinumum = 0;
+var setMaximum = 100;
 var guessButton = document.querySelector('#guess-button');
 var clearButton = document.querySelector('#clear-button');
 var displayLastGuess = document.querySelector('.display-last-guess');
@@ -45,116 +59,151 @@ var userInputGuess = document.querySelector('#user-input');
 var resetGameButton = document.querySelector('.reset-button');
 var yourLastGuessWas = document.getElementById('your-last-guess-was');
 var thatIsToo = document.getElementById('that-is-too');
+var inputMin = document.getElementById('minimum-number');
+var inputMax = document.getElementById('maximum-number');
+var userRangeInput = document.getElementById('user-range-input');
 
+var randomNumber = initializeNewGame();
+
+guessButton.addEventListener('click', alertUser);
+userInputGuess.addEventListener('input', updateButtonStates);
+clearButton.addEventListener('click', clearUserGuess);
+inputMax.addEventListener('input', updateRange);
+resetGameButton.addEventListener('click', resetGame);
+
+function initializeNewGame() {
+  var randomNumber = getRandomNumber(setMinumum, setMaximum);
+  console.log(randomNumber);
+  return randomNumber;
+}
 
 function getRandomNumber(min, max) {
-  return Math.floor(Math.random() * (max - min) + min);
-};
+  return Math.floor(Math.random() * (max - min + 1) + min);
+}
 
 function updateButtonStates() {
   var userInput = userInputGuess.value;
-  guessButton.disabled = userInput === "";
-  clearButton.disabled = userInput === "";
-  resetGameButton.disabled = userInput === "";
-
-  // function addHoverState() {
-  //   guessButton.classList.add('button-hover');
-  //   console.log("addHoverState ran");
-  // }
+  guessButton.disabled = userInput === '';
+  clearButton.disabled = userInput === '';
+  resetGameButton.disabled = userInput === '';
 
   if (guessButton.disabled === false) {
     guessButton.classList.add('active-button');
-    // console.log("guess button is ENABLED");
   } else {
     guessButton.classList.remove('active-button');
-    // console.log("guess button is DISABLED")
   }
 
   if (clearButton.disabled === false) {
     clearButton.classList.add('active-button');
-    // console.log("clear button is ENABLED");
   } else {
     clearButton.classList.remove('active-button');
-    // console.log("clear button is DISABLED")
   }
 
   if (resetGameButton.disabled === false) {
     resetGameButton.classList.add('active-button');
-    // console.log("reset button is ENABLED");
   } else {
     resetGameButton.classList.remove('active-button');
-    // console.log("reset button is DISABLED");
   }
-};
-// ^^ can clean up this code by putting all remove/add classes into the same if event
-
+}
 
 function clearUserGuess() {
-  document.getElementById('user-input').value = "";
+  document.getElementById('user-input').value = '';
   updateButtonStates();
-};
+}
 
 function displayUserResult() {
   var userInput = userInputGuess.value; 
   userInput = parseInt(userInput, 10);
+  yourLastGuessWas.classList.remove('pink-text');
 
   if (randomNumber > userInput) {
-    thatIsToo.innerText = "That is too low!";
+    thatIsToo.innerText = 'That is too low!';
   } else if (randomNumber < userInput) {
-    thatIsToo.innerText = "That is too high!";
+    thatIsToo.innerText = 'That is too high!';
   } else if (randomNumber === userInput) {
-    thatIsToo.innerText = "BOOM!";
-  } else {}
-
-  if (thatIsToo.innerText === "BOOM!") {
+    thatIsToo.innerText = 'BOOM!';
     guessButton.disabled = true;
     guessButton.classList.remove('active-button');
     clearButton.disabled = true;
     clearButton.classList.remove('active-button');
-  } else {}
-};
+  } 
+}
 
-function resetGame() {
-  yourLastGuessWas.innerText = "Guess a number";
-  displayLastGuess.innerText = "";
-  thatIsToo.innerText = "";
-  updateButtonStates();
-  clearUserGuess();
-  randomNumber = getRandomNumber(0,100);
-  console.log(randomNumber);
-};
-
-// look into highlow ()
-
-guessButton.addEventListener('click', function() {
+function alertUser() {
   var userInput = userInputGuess.value;
   userInput = parseInt(userInput, 10);
+  var userInputMin = inputMin.value;
+  userInputMin = parseInt(userInputMin, 10);
+  console.log(userInputMin);
+  var userInputMax = inputMax.value;
+  userInputMax = parseInt(userInputMax, 10);
+  console.log(userInputMax);
 
   if (Number.isNaN(userInput)) {
-    alert("Please enter a number.");
-  } else if ((userInput < 0) || (userInput > 100)) {
-    alert("Number must be between 0 and 100");
+    alert('Please enter a number.');
+  } else if ((userInput < userInputMin) || (userInput > userInputMax)) {
+    alert('Number must be between ' + userInputMin + ' and ' + userInputMax);
   } else {
     displayLastGuess.innerText = userInput;
-    yourLastGuessWas.innerText = "Your last guess was";
-    thatIsToo.innerText = "";
+    yourLastGuessWas.innerText = 'Your last guess was';
     displayUserResult();
   }
-});
+
+  if (((Number.isNaN(userInputMin) || (Number.isNan(userInputMax))) && ((userInput < 0) || (userInput > 100)))) {
+    alert('Number must be between 0 and 100')
+    resetGame();
+  }
+}
+
+function resetGame() {
+  yourLastGuessWas.innerText = 'Guess a number';
+  yourLastGuessWas.classList.add('pink-text');
+  displayLastGuess.innerText = '';
+  thatIsToo.innerText = '';
+
+  userRangeInput.reset();
+  updateButtonStates();
+  clearUserGuess();
+  randomNumber = initializeNewGame();
+}
+
+function updateRange() {
+  var userInputMin = inputMin.value;
+  userInputMin = parseInt(userInputMin, 10);
+  var userInputMax = inputMax.value;
+  userInputMax = parseInt(userInputMax, 10);
 
 
-userInputGuess.addEventListener('input', updateButtonStates);
+  if ((userInputMin < userInputMax) && ((Number.isNaN(userInputMax)) === false)) {
+    randomNumber = getRandomNumber(userInputMin, userInputMax);
+    console.log(randomNumber);
+    resetGameButton.disabled = false;
+    resetGameButton.classList.add('active-button');
+  }
+}
 
-clearButton.addEventListener('click', clearUserGuess);
 
-resetGameButton.addEventListener('click', resetGame);
+// EXTRAS I started but didn't finish or couldn't figure out:
 
+// ----- expand range if user guesses correctly -----
+// function expandRange() {
+//     var userInput = userInputGuess.value;
+//     var changeMinimum = setMinumum - 10;
+//     console.log('there is a new min');
+//     var changeMaximum = setMaximum + 10;
+//     console.log('there is a new max');
 
+//     if (userInput === randomNumber) {
+//       initializeNewGame(changeMinimum, changeMaximum);
+//     }
+// }
 
-// ^^ when reset-button is clicked, function resetGame is run.
-
-// may need to figure out how to run back through other functions. 
-// figure out how to start with reset state
+// ----- enter button from guess input field triggers Guess button click -----
+// userInputGuess.addEventListener('keypress', function(event) {
+//   if (event.keyCode === 13) {
+//     guessButton.click();
+//   }
+// });
 
 
 
