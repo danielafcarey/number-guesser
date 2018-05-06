@@ -8,7 +8,7 @@ Number Guesser is a game that generates a random number between 0-100 and allows
 
 **Turing School of Software & Design Front-End Engineering Project - Mod 1:** [Number Guesser Project Spec](http://frontend.turing.io/projects/number-guesser.html)
 
-### *Screenshots* 
+### *Screenshots:* 
 
 ![Main Screen](./main.png)
 
